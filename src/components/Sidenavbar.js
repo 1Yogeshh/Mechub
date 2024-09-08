@@ -1,54 +1,71 @@
-import { Aperture, CircleUserRound, FolderPlus, House, LogOut } from 'lucide-react'
+import { Aperture, CircleUserRound, FolderPlus, House, LogOut, Settings } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import pic from "./yogesh dp.jpg";
 
 function Sidenavbar() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
-  const token= localStorage.getItem('token')
-
-
-  const handleLogout = () => {
+  /*const handleLogout = () => {
     localStorage.removeItem('token'); // Remove the token from local storage
     navigate('/login'); // Redirect to the login page
-    toast("user logout successfully")
-  };
+    toast("User logged out successfully");
+  };*/
 
   // Function to add active class
-  const getActiveClass = ({ isActive }) => isActive ? 'text-[#5b23d7]' : 'text-black';
-
+  const getActiveClass = ({ isActive }) => isActive ? 'text-[#5b23d7] bg-[#e9eaf0] rounded-md' : 'text-black';
 
   return (
-    <div className='ml-[50px] mt-[20px] sticky top-[20px]'>
-      <div className='mt-6 mb-6'>
-        <NavLink 
-          exact 
+    <div className='ml-12 mt-4 sticky top-4'>
+      <div className='mt-4 mb-4 w-[200px]'>
+        <NavLink
           to="/dashboard"
-          className={({ isActive }) => `font-medium flex gap-2 items-center text-[15px] ${getActiveClass({ isActive })}`}>
-          <House size={20}/>
-          Home
+          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
+          <House size={20} />
+          <span>Home</span>
         </NavLink>
       </div>
-      <div className='bg-[#cbcfd4b3] h-[0.5px] w-[200px]'></div>
-      <div className='mt-6 mb-6'>
-        <NavLink to='/search' className={({ isActive }) => `font-medium flex gap-2 items-center text-[15px] ${getActiveClass({ isActive })}`}><Aperture size={20}/> Explore</NavLink>
+      <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
+      <div className='mt-4 mb-4 w-[200px]'>
+        <NavLink
+          to='/search'
+          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
+          <Aperture size={20} />
+          <span>Explore</span>
+        </NavLink>
       </div>
-      <div className='bg-[#cbcfd4b3] h-[0.5px] w-[200px]'></div>
-      <div className='mt-6 mb-6'>
-        <NavLink to='/create' className={({ isActive }) => `font-medium flex gap-2 items-center text-[15px] ${getActiveClass({ isActive })}`}><FolderPlus size={20}/> Create</NavLink>
+      <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
+      <div className='mt-4 mb-4 w-[200px]'>
+        <NavLink
+          to='/create'
+          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
+          <FolderPlus size={20} />
+          <span>Create</span>
+        </NavLink>
       </div>
-      <div className='bg-[#cbcfd4b3] h-[0.5px] w-[200px]'></div>
-      <div className='mt-6 mb-6'>
-        <NavLink className={({ isActive }) => `font-medium flex gap-2 items-center text-[15px] ${getActiveClass({ isActive })}`} to='/profile'><CircleUserRound size={20}/> My Profile</NavLink>
+      <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
+      <div className='mt-4 mb-4 w-[200px]'>
+        <NavLink
+          to='/profile'
+          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
+          <img src={pic} className='h-8 w-8 rounded-full' alt="User" />
+          <span>My Profile</span>
+        </NavLink>
       </div>
-      <div className='bg-[#cbcfd4b3] h-[0.5px] w-[200px]'></div>
-      <div className='mt-[350px]'>
-        <NavLink onClick={handleLogout} className='flex font-medium gap-2 hover:cursor-pointer items-center text-[15px] hover:text-blue-600'><LogOut size={20}/> Logout</NavLink>
+      <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
+      <div className='mt-80 mb-4 w-[200px]'>
+        <NavLink
+          to='/settings'
+          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
+          <Settings size={20} />
+          <span>Settings</span>
+        </NavLink>
       </div>
     </div>
-  )
+  );
 }
 
-export default Sidenavbar
+export default Sidenavbar;

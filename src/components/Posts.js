@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Make sure you have react-router-dom installed
-import { ChartNoAxesColumn, CircleUserRound, Ellipsis, Star, ThumbsUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChartNoAxesColumn, Ellipsis, Rocket, Star } from 'lucide-react';
 import { useDispatch } from 'react-redux';
+import { formatDistanceToNow } from 'date-fns';
 import { getRefresh } from '../redux/postSlice';
 
-import pic from "./yogesh pic.jpg"
-const Home = () => {
+import pic from "./yogesh dp.jpg"; // Sample user picture
+
+const Post = () => {
     const [posts, setPosts] = useState([]);
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getPosts = async () => {
@@ -19,44 +21,60 @@ const Home = () => {
                         'Authorization': `Bearer ${token}`
                     },
                 });
-                setPosts(response.data); // Access the data property
-                dispatch(getRefresh())
+                
+                // Sort posts by creation date (newest first)
+                const sortedPosts = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                setPosts(sortedPosts);
+                dispatch(getRefresh());
             } catch (error) {
                 console.error('Error fetching posts:', error);
-                setPosts([]); // Set posts to an empty array in case of error
+                setPosts([]);
             }
         };
         getPosts();
-    }, []);
+    }, [dispatch]);
 
     return (
-        <div className='ml-[200px] w-[800px]'>
-            <p className='text-left font-medium mb-4 mt-2 flex gap-2'><ChartNoAxesColumn className='mt-1 text-blue-700'/> All Projects</p>
+        <div className='ml-[200px] w-[800px] mb-20'>
             {posts.length > 0 ? (
                 posts.map(post => (
-                    <div key={post._id} className='shadow-lg rounded text-left p-5 mt-4 bg-white '>
-                        <div className='flex justify-between'>
-                           <div className='flex'>
-                           <img className='h-10 w-10 rounded-full mr-2' src={pic}/>
-                           <p className=' font-medium text-[17px]'>{post.user.name}</p>
-                           <p className='text-sm text-gray-500 mt-2 ml-1'>made this project 🚀</p>
-                           </div>
-                           <Ellipsis className='mt-2'/>
+                    <div key={post._id} className='shadow-lg hover:shadow-2xl transition-shadow duration-300 rounded-lg text-left p-6 mt-6 bg-white border-t-4 border-[#5b23d7]'>
+                        <div className='flex justify-between items-center'>
+                            <div className='flex items-start'>
+                                <img className='h-12 w-12 rounded-full mr-4' src={post.user.img} alt="User" />
+                                <div className='flex flex-col'>
+                                    <div className='flex'>
+                                        <p className='font-bold text-[18px] text-[#5b23d7]'>{post.user.name}</p>
+                                        <p className='text-sm text-gray-500 mt-[6px] ml-1 flex gap-1'>
+                                            made this project <Rocket size={18}/>
+                                        </p>
+                                    </div>
+                                    <p className='text-xs text-gray-400 mt-1'>
+                                        {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
+                                    </p>
+                                </div>
+                            </div>
+                            <Ellipsis className='text-gray-400 hover:text-[#5b23d7] cursor-pointer' />
                         </div>
-                        <div className='shadow-lg bg-zinc-100 pb-4 pl-5 rounded mt-2'>
-                            <Link className='hover:text-blue-500 hover:underline font-medium text-[16px] gap-1 flex' to={`/post/${post._id}` }><CircleUserRound className='mt-2 text-blue-600'/> {post.user.username}/<p>{post.title}</p></Link>
-                            <p  className='text-sm h-auto ml-8'>{post.description}</p>
-                            <p className='flex gap-1 text-lg mt-4 font-normal ml-8'><Star className='mt-1' size={20}/> 0</p>
+                        <div className='shadow-inner bg-gray-50 hover:bg-gray-100 pb-6 pl-6 pr-6 rounded-lg mt-4 pt-4'>
+                            <Link className='hover:text-[#5b23d7] hover:underline font-medium text-[16px] flex items-center gap-2' to={`/post/${post._id}`}>
+                                <img src={post.user.img} className='h-[30px] w-[30px] rounded-full' alt="User avatar" />
+                                {post.user.username}/<span>{post.title}</span>
+                            </Link>
+                            <p className='text-sm text-gray-600 h-auto ml-10 mt-3'>{post.description}</p>
+                            <p className='flex gap-2 text-lg mt-6 font-normal ml-10 text-[#5b23d7]'>
+                                <Star className='' size={22} /> 0
+                            </p>
                         </div>
                     </div>
                 ))
             ) : (
                 <div className='flex justify-center mt-10'>
-                <p className='font-medium'>No posts available.</p>
+                    <p className='font-semibold text-[#5b23d7]'>No posts available.</p>
                 </div>
             )}
         </div>
     );
 };
 
-export default Home;
+export default Post;

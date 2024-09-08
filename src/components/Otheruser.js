@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
-import pic from "./yogesh pic.jpg";
+import pic from "./yogesh dp.jpg";
 import { MapPin } from 'lucide-react';
 import { toast } from 'react-toastify';
 import Navbar from './Navbar';
@@ -87,7 +87,7 @@ function Otheruser() {
           )}
           <button
             onClick={handleFollow}
-            className={`p-2 mt-4 text-sm w-56 justify-center items-center text-center rounded font-medium ${isFollowing ? 'bg-white text-black' : 'bg-white text-black'}`}
+            className={`p-2 mt-4 text-sm w-56 justify-center items-center border-[2px] border-[#5b23d7] text-center rounded font-medium ${isFollowing ? 'bg-white text-[#5b23d7]' : ' text-white bg-[#5b23d7]'}`}
             aria-label={isFollowing ? 'Unfollow user' : 'Follow user'}
             disabled={loading}
           >

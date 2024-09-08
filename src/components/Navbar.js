@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import logo from "./MEC UB_20240831_150344_0000.png"
+import { Github } from 'lucide-react';
 
 function Navbar() {
   const navigate=useNavigate();
@@ -22,6 +23,9 @@ function Navbar() {
             <div className='flex gap-4 ml-10'>
             <img src={logo} className='h-[110px] mt-8'></img>
             </div>
+            <a href='https://github.com/1Yogeshh/Mechub' className='border border-[#5b23d7] h-[30px] w-[30px] justify-center items-center flex rounded-full text-white bg-[#5b23d7] hover:cursor-pointer ml-[1180px]'>
+              <Github size={20}/>
+            </a>
             <div className='flex mr-10'>
             {token ? (
             <div className=''>
@@ -33,9 +37,9 @@ function Navbar() {
               </button>
             </div>
           ) : (
-            <div className=''>
-              <a className='mt-1 mr-4 ml-28 bg-blue-500  font-medium pl-3 pr-3 pt-1 pb-1 rounded' href='/register'>Sign Up</a>
-              <a className='mt-1 text-blue-500 font-medium pl-3 pr-3 pt-1 pb-1 rounded' href='/login'>Sign In</a>
+            <div>
+                <button className='bg-[#5b23d7] border-[#5b23d7] pt-3 pb-3 text-sm pl-8 pr-8 rounded text-white font-medium border-[2px] hover:text-[#5b23d7] hover:bg-white'>Signin</button>
+                <button className='pt-3 pb-3 pl-7 text-sm pr-7 rounded font-medium border-[2px] border-[#5b23d7] text-[#5b23d7] ml-6 mr-6 hover:bg-[#5b23d7] hover:text-white'>Signup</button>
             </div>
           )}
             </div>

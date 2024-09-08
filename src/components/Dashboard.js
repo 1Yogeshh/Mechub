@@ -32,7 +32,7 @@ const Dashboard = () => {
         <Navbar/>
     </div>
     <div className='flex w-full'>
-      <div className='w-1/5 text-left justify-start items-start border-[#cbcfd4b3] border-r-[1px] sticky top-0 '><Sidenavbar/></div>
+      <div className='w-[320px] text-left justify-start items-start border-[#cbcfd4b3] border-r-[1px] sticky top-0  h-screen'><Sidenavbar/></div>
       <div className=' bg-zinc-100   text-2xl w-[1230px]'>
          <Posts/>
       </div>

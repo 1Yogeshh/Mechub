@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidenavbar from './Sidenavbar';
+import { EllipsisVertical, Search } from 'lucide-react';
+import pic from "./yogesh dp.jpg"
 
 const SearchUsers = () => {
     const [query, setQuery] = useState('');
@@ -24,31 +26,36 @@ const SearchUsers = () => {
     };
 
     return (
-        <div>
-            <div>
+        <div className='bg-zinc-100 w-full'>
+            <div className='bg-white'>
                 <Navbar/>
             </div>
-            <div className='flex
-            '>
-            <div className='w-1/5 text-left justify-start items-start border-[#cbcfd4b3] border-r-[1px] sticky top-0 h-screen'>
+            <div className='flex'>
+            <div className='w-[320px] text-left justify-start items-start border-[#cbcfd4b3] border-r-[1px] sticky top-0  h-screen bg-white'>
                 <Sidenavbar/>
             </div>
-            <div>
-            <form onSubmit={handleSearch}>
+            <div className='flex flex-col items-center ml-[300px]'>
+            <form onSubmit={handleSearch} className='flex mt-4 justify-between w-[560px] h-[40px] mr-8 rounded-lg bg-white shadow'>
+                <div className='flex'>
+                <button type="submit" className='ml-2 text-gray-400'><Search/></button>
                 <input
-                    type="text"
+                    type="search"
+                    className='w-[520px] outline-none pl-2 rounded-lg pr-2 font-medium'
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search users"
                 />
-                <button type="submit">Search</button>
+                </div>
             </form>
-            <ul>
+            <ul className=''>
             {results.map((user) => (
-                    <li key={user._id}>
-                        <Link to={`/user/${user.username}`}>
-                            {user.name} ({user.username})
+                    <li key={user._id} className='bg-white mt-4 w-[560px] mr-8 rounded-lg shadow h-[80px]'>
+                        <Link to={`/user/${user.username}`} className='flex items-center'>
+                            <img src={pic} className='h-[60px] w-[60px] rounded-full mt-3 ml-6'></img>
+                            <div className='ml-2 mt-2'><p className='font-medium text-[17px]'>{user.name}</p><p className='text-gray-500 text-[15px]'>{user.username}</p></div>
+                            <EllipsisVertical className='ml-[330px]' size={20}/>
                         </Link>
+
                     </li>
                 ))}
             </ul>

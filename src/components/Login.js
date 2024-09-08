@@ -58,7 +58,7 @@ const Login = () => {
   <div className='flex  bg-white border-[2px] border-black rounded'>
   <Mail color='red' className='m-2'/>
   <input 
-    className='font-medium outline-none p-2 w-96 rounded' 
+    className='font-medium outline-none p-2 w-96 rounded text-sm' 
     type="email"
     value={email} 
     onChange={(e) => setEmail(e.target.value)} 
@@ -71,7 +71,7 @@ const Login = () => {
   <div className='flex  bg-white border-[2px] border-black rounded'>
   <Lock color='blue' className='m-2'/>
   <input 
-    className='font-medium outline-none p-2 w-96 rounded' 
+    className='font-medium outline-none p-2 w-96 rounded text-sm' 
     type="password" 
     value={password} 
     onChange={(e) => setPassword(e.target.value)} 

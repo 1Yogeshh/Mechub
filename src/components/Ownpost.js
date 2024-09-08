@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Make sure you have react-router-dom installed
+import { Link } from 'react-router-dom';
 import { Ellipsis, Star, ThumbsUp } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { getRefresh } from '../redux/postSlice';
 import { ChartNoAxesColumn } from 'lucide-react';
+import pic from "./yogesh dp.jpg";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getPosts = async () => {
@@ -19,31 +20,41 @@ const Home = () => {
                         'Authorization': `Bearer ${token}`
                     },
                 });
-                setPosts(response.data); // Access the data property
-                dispatch(getRefresh())
+                setPosts(response.data);
+                dispatch(getRefresh());
             } catch (error) {
                 console.error('Error fetching posts:', error);
-                setPosts([]); // Set posts to an empty array in case of error
+                setPosts([]);
             }
         };
         getPosts();
-    }, []);
+    }, [dispatch]);
 
     return (
-        <div>
-            <p className='text-left font-medium mb-4 mt-8 flex gap-2 '> <ChartNoAxesColumn className=' text-blue-700'/>Projects</p>
+        <div className='p-6'>
+            <p className='text-left font-medium text-2xl mb-6 flex items-center gap-2'>
+                <ChartNoAxesColumn size={22} className='text-[#5b23d7]' />
+                Projects
+            </p>
             {posts.length > 0 ? (
                 posts.map(post => (
-                    <div key={post._id} className='bg-white shadow-lg rounded text-left p-5 mt-4  w-[700px]'>
-                        <div className=' pb-4 pl-5 rounded mt-2 pt-2'>
-                            <Link className='hover:text-blue-800 hover:underline  font-medium text-[16px] gap-1 flex' to={`/post/${post._id}` }>{post.user.username}/<p>{post.title}</p></Link>
-                            <p  className='text-sm h-auto font-normal  '>{post.description}</p>
-                            <p className='flex gap-1 text-lg mt-4'><Star size={20} className='mt-1'/>0</p>
+                    <div key={post._id} className='bg-white shadow-lg rounded-lg text-left p-6 mt-6 w-[650px] '>
+                        <div className='flex items-start gap-4'>
+                            <img src={post.user.img} className='h-12 w-12 rounded-full' alt="User" />
+                            <div className='flex flex-col flex-grow'>
+                                <Link className='text-[#5b23d7] hover:underline font-medium text-[17px] mt-3' to={`/post/${post._id}`}>
+                                    {post.user.username}/<span>{post.title}</span>
+                                </Link>
+                                <p className='text-gray-700 text-sm mt-2'>{post.description}</p>
+                                <div className='flex items-center mt-4'>
+                                    <Star size={20} className='text-[#5b23d7]' />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 ))
             ) : (
-                <p>No posts available.</p>
+                <p className='text-center text-gray-500 mt-8'>No posts available.</p>
             )}
         </div>
     );

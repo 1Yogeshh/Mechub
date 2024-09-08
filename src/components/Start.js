@@ -6,7 +6,6 @@ import Navbar from "./Navbar"
 import Startnav from './Startnav';
 const Start=()=> {
     const navigate=useNavigate();
-
     const token= localStorage.getItem('token')
     /*
     const changeScreen=()=>{
@@ -45,18 +44,21 @@ const Start=()=> {
       <h1 className='font-bold text-7xl'>The Home for<br></br> <span className='text-[#5b23d7]'>Developer</span> Communities</h1>
     </div>
     <div className='mt-4'>
-      <p className='text-gray-500 font-medium text-[17px]'>Collaborate effortlessly with peers and streamline your Mechanical engineering projects, designs, <br></br>share ideas and enhance productivity</p>
+      <p className='text-gray-500 font-medium text-[19px]'>Collaborate effortlessly with peers and streamline your Mechanical engineering projects, designs, <br></br>share ideas and enhance productivity</p>
     </div>
-    <div className='mt-4'>
+    <div className='mt-4 flex gap-4'>
       {token ? (
             <div className=''>
-            <button onClick={()=>navigate("/dashboard")} className='bg-[#5b23d7] border-[2px] border-[#5b23d7] hover:text-[#5b23d7] hover:bg-white text-sm  text-white font-medium pt-4 pb-4 pl-7 pr-7 rounded flex justify-center items-center gap-2'>Dashboard <ChevronRight /></button>
+            <button onClick={()=>navigate("/dashboard")} className='bg-[#5b23d7] border-[2px] border-[#5b23d7] hover:text-[#5b23d7] hover:bg-white text-sm  text-white font-medium h-[50px] w-[150px] rounded-lg flex justify-center items-center gap-2'>Dashboard</button>
             </div>
           ) : (
             <div className=''>
-            <button onClick={()=>navigate("/login")} className='bg-[#5b23d7] border-[2px] border-[#5b23d7] hover:text-[#5b23d7] hover:bg-white text-sm  text-white font-medium pt-3 pb-3 pl-7 pr-7 rounded flex justify-center items-center gap-2'>Dashboard <ChevronRight /></button>
+            <button onClick={()=>navigate("/login")} className='bg-[#5b23d7] border-[2px] border-[#5b23d7] hover:text-[#5b23d7] hover:bg-white text-sm  text-white font-medium h-[50px] w-[150px] rounded-lg flex justify-center items-center gap-2'>Dashboard</button>
             </div>
           )}
+       <div>
+        <button className='bg-white border-[2px] border-[#5b23d7] hover:text-white hover:bg-[#5b23d7] text-sm  text-[#5b23d7] font-medium h-[50px] w-[150px] rounded-lg flex justify-center items-center gap-2'>See how it works</button>
+       </div>   
     </div>
   </div>
   </div>
