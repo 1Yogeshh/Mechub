@@ -17,6 +17,7 @@ import FollowingList from './components/FollowingList';
 import MyFollowersList from './components/Myfollowers';
 import MyFollowingList from './components/Myfollowing';
 import SearchUsers from './components/Search';
+import "./App.css"
 
 function App() {
   return (

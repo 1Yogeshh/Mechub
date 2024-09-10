@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
 import pic from "./yogesh dp.jpg"
-import { MapPin, PencilLine, Pi } from 'lucide-react';
+import { CircleUserRound, MapPin, PencilLine, Pi } from 'lucide-react';
 import Ownpost from "./Ownpost"
 import Sidenavbar from './Sidenavbar';
 import { ColorRing } from 'react-loader-spinner';
@@ -59,8 +59,8 @@ const Profile = () => {
                   <div className='border-[3px] border-[#5b23d7] h-[204px] w-[204px] mt-20 rounded-full'>
                      <img src={user.img} className='h-[200px] w-[200px] rounded-full'></img>
                   </div>:
-                  <div className='border-[1px] border-[#5b23d7] h-[204px] w-[204px] mt-20 rounded-full'>
-                     <img src={pic} className='h-[200px] w-[200px] rounded-full'></img>
+                  <div className=' h-[204px] w-[204px] mt-20 rounded-full'>
+                     <CircleUserRound className='h-[200px] w-[200px] rounded-full text-white bg-[#5b23d7]'/>
                    </div>  
                }
                <p className=' font-medium text-xl mt-2'>{user.name}</p>

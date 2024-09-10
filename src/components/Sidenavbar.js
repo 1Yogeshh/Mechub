@@ -1,4 +1,4 @@
-import { Aperture, CircleUserRound, FolderPlus, House, LogOut, Settings } from 'lucide-react';
+import { Aperture, BellRing, CircleUserRound, FolderPlus, Github, House, Linkedin, LogOut, Mail, Search, Settings } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -33,8 +33,8 @@ function Sidenavbar() {
         <NavLink
           to='/search'
           className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
-          <Aperture size={20} />
-          <span>Explore</span>
+          <Search size={20} />
+          <span>Search</span>
         </NavLink>
       </div>
       <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
@@ -49,21 +49,23 @@ function Sidenavbar() {
       <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
       <div className='mt-4 mb-4 w-[200px]'>
         <NavLink
+          to='/notification'
+          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
+          <BellRing size={20}/>
+          <span>Notification</span>
+        </NavLink>
+      </div>
+      <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
+      <div className='mt-4 mb-4 w-[200px]'>
+        <NavLink
           to='/profile'
           className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
-          <img src={pic} className='h-8 w-8 rounded-full' alt="User" />
+          <CircleUserRound size={20}/>
           <span>My Profile</span>
         </NavLink>
       </div>
       <div className='bg-[#e0e0e0] h-[1px] w-[200px]'></div>
-      <div className='mt-80 mb-4 w-[200px]'>
-        <NavLink
-          to='/settings'
-          className={({ isActive }) => `flex gap-2 items-center p-3 text-[15px] ${getActiveClass({ isActive })}`}>
-          <Settings size={20} />
-          <span>Settings</span>
-        </NavLink>
-      </div>
+      
     </div>
   );
 }
