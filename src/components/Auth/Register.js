@@ -50,7 +50,7 @@ const Register = () => {
           <div>
             <label className="font-medium mb-1 block">Name</label>
             <div className="flex items-center bg-white border-2 border-gray-300 rounded">
-              <User className="m-2 text-purple-600" />
+              <User size={20} className="m-2 text-purple-600" />
               <input
                 className="flex-1 p-2 outline-none"
                 type="text"
@@ -65,7 +65,7 @@ const Register = () => {
           <div>
             <label className="font-medium mb-1 block">Username</label>
             <div className="flex items-center bg-white border-2 border-gray-300 rounded">
-              <User className="m-2 text-green-600" />
+              <User size={20} className="m-2 text-green-600" />
               <input
                 className="flex-1 p-2 outline-none"
                 type="text"
@@ -80,7 +80,7 @@ const Register = () => {
           <div>
             <label className="font-medium mb-1 block">Email</label>
             <div className="flex items-center bg-white border-2 border-gray-300 rounded">
-              <Mail className="m-2 text-red-600" />
+              <Mail size={20} className="m-2 text-red-600" />
               <input
                 className="flex-1 p-2 outline-none"
                 type="email"
@@ -95,7 +95,7 @@ const Register = () => {
           <div>
             <label className="font-medium mb-1 block">Password</label>
             <div className="flex items-center bg-white border-2 border-gray-300 rounded">
-              <Lock className="m-2 text-blue-600" />
+              <Lock size={20} className="m-2 text-blue-600" />
               <input
                 className="flex-1 p-2 outline-none"
                 type={showPassword ? 'text' : 'password'}
