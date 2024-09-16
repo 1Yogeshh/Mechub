@@ -93,14 +93,14 @@ const Start=()=> {
       </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 mb-4 md:py-24 mt-[100px] lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
+        <section className="w-full py-12 mb-[100px] md:py-24 mt-[100px]  lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center text-center space-y-6 lg:flex-row lg:space-y-0 lg:space-x-12">
               <div className="flex flex-col justify-center items-center">
               
                 <div className="md:w-[900px]">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4">
-                    Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] text-6xl font-semibold'>Mechub</span>
+                    Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] md:text-6xl text-4xl font-semibold'>Mechub</span>
                   </h1>
                   <p className=" text-muted-foreground md:text-xl mb-4 font-medium text-gray-600">
                     Mechub is a platform for mechanical students and engineers to showcase their designs, projects, and
