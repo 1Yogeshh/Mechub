@@ -61,7 +61,7 @@ const Start=()=> {
   
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className=" h-16 md:pl-20 md:pr-20 flex items-center bg-[#5b23d7] text-white justify-between top-0 sticky">
+      <header className=" h-16 md:pl-20 md:pr-20 pl-4 pr-4 flex items-center bg-[#5b23d7] text-white justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
         <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-white to-white text-xl font-semibold">Mechub</span>
           
