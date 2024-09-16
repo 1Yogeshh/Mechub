@@ -2,66 +2,134 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Lock, Mail, User } from 'lucide-react';
+import { Lock, Mail, User, Eye, EyeOff } from 'lucide-react';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const res= await axios.post('https://mechub-server.vercel.app/api/auth/signup', { name, username, email, password });
-      if(res.data.success){
+      const res = await axios.post('https://mechub-server.vercel.app/api/auth/signup', {
+        name,
+        username,
+        email,
+        password,
+      });
+      if (res.data.success) {
         navigate('/login');
-        toast.success(res.data.message)
+        toast.success(res.data.message);
       }
-
     } catch (err) {
+      toast.error('Registration failed! Please try again.');
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <div className='flex justify-center items-center h-screen'>
-      <div className=' flex flex-col h-[600px] w-[500px] justify-center items-center text-center shadow-lg rounded-lg'>
+    <div className="flex justify-center items-center min-h-screen p-4 bg-gray-100">
+      <div className="flex flex-col w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+        <h2 className="font-bold text-3xl mb-6 text-center">
+          Sign up for <span className="text-[#5b23d7]">Mechub</span>
+        </h2>
 
-<h2 className=' font-[700] text-[40px]  mb-4'>Sign in to <span className='text-[#5b23d7]'>Mechub</span></h2>
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+          <div>
+            <label className="font-medium mb-1 block">Name</label>
+            <div className="flex items-center bg-white border-2 border-gray-300 rounded">
+              <User className="m-2 text-purple-600" />
+              <input
+                className="flex-1 p-2 outline-none"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your Name"
+                required
+              />
+            </div>
+          </div>
 
-<form onSubmit={handleSubmit} className='flex flex-col text-left'>
+          <div>
+            <label className="font-medium mb-1 block">Username</label>
+            <div className="flex items-center bg-white border-2 border-gray-300 rounded">
+              <User className="m-2 text-green-600" />
+              <input
+                className="flex-1 p-2 outline-none"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Your Username"
+                required
+              />
+            </div>
+          </div>
 
-  <label className='font-medium  mb-1'>Name</label>
-  <div className='flex bg-white border-[2px] border-black rounded'>
-  <User color='purple' className='m-2'/>
-  <input className='font-medium outline-none p-2 w-96 rounded' type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="name" required />
-  </div>
+          <div>
+            <label className="font-medium mb-1 block">Email</label>
+            <div className="flex items-center bg-white border-2 border-gray-300 rounded">
+              <Mail className="m-2 text-red-600" />
+              <input
+                className="flex-1 p-2 outline-none"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="example@gmail.com"
+                required
+              />
+            </div>
+          </div>
 
-  <label className='font-medium mb-1 mt-2'>Username</label>
-  <div className='flex bg-white border-[2px] border-black rounded'>
-  <User color='green' className='m-2'/>
-  <input className='font-medium outline-none p-2 w-96 rounded ' type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" required />
-  </div>
+          <div>
+            <label className="font-medium mb-1 block">Password</label>
+            <div className="flex items-center bg-white border-2 border-gray-300 rounded">
+              <Lock className="m-2 text-blue-600" />
+              <input
+                className="flex-1 p-2 outline-none"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Your Password"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="px-2"
+              >
+                {showPassword ? <EyeOff /> : <Eye />}
+              </button>
+            </div>
+          </div>
 
-  <label className='font-medium  mb-1 mt-2'>Email address</label>
-  <div className='flex bg-white border-[2px] border-black rounded'>
-  <Mail color='red' className='m-2'/>
-  <input className='font-medium outline-none p-2 w-96 rounded' type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="example@gmail.com" required />
-  </div>
-  <label className='font-medium  mb-1 mt-2'>Password</label>
-  <div className='flex bg-white border-[2px] border-black rounded '>
-  <Lock color='blue' className='m-2'/>
-  <input className='font-medium outline-none p-2 w-96 rounded' type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" required />
-  </div>
-  <button type="submit" className='w-[420px] p-2 mt-6 bg-[#5b23d7] border-none rounded font-medium text-white'>Register</button>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full p-2 bg-[#5b23d7] text-white font-medium rounded transition"
+          >
+            {loading ? 'Registering...' : 'Register'}
+          </button>
 
-  <p className='flex justify-center mt-4 font-medium gap-2'>Already have an account?<a href='/login' className='text-[#5b23d7] cursor-pointer'>Signin</a></p>
-
-</form>
-
-</div>
+          <p className="text-center mt-4">
+            Already have an account?{' '}
+            <a href="/login" className="text-[#5b23d7] font-medium">
+              Sign In
+            </a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
