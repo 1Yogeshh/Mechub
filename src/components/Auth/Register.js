@@ -95,7 +95,7 @@ const Register = () => {
           <div>
             <label className="font-medium mb-1 block">Password</label>
             <div className="flex items-center bg-white border-2 border-gray-300 rounded">
-              <Lock size={20} className="m-2 text-blue-600" />
+              <Lock size={100} className="m-2 text-blue-600" />
               <input
                 className="flex-1 p-2 outline-none"
                 type={showPassword ? 'text' : 'password'}
