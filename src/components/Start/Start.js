@@ -100,7 +100,7 @@ const Start=()=> {
               
                 <div className="md:w-[900px]">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4">
-                    Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] md:text-6xl text-4xl font-semibold'>Mechub</span>
+                    Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] md:text-6xl text-4xl font-bold'>Mechub</span>
                   </h1>
                   <p className=" text-muted-foreground md:text-xl mb-4 font-medium text-gray-600">
                     Mechub is a platform for mechanical students and engineers to showcase their designs, projects, and

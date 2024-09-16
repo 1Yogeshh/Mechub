@@ -78,7 +78,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="font-medium mb-1 block">Email</label>
+            <label className="font-medium mb-1 block">Email address</label>
             <div className="flex items-center bg-white border-2 border-gray-300 rounded">
               <Mail size={20} className="m-2 text-red-600" />
               <input
