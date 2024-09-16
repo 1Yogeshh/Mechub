@@ -21,7 +21,7 @@ const Start=()=> {
     useEffect(() => {
       const fetchProfile = async () => {
           try {
-              const response = await axios.get('http://localhost:5000/api/auth/profile', {
+              const response = await axios.get('https://mechub-server.vercel.app/api/auth/profile', {
                   headers: {
                       Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },
@@ -82,7 +82,7 @@ const Start=()=> {
         {
           localStorage.getItem('token')?(
                 <div>
-                <button  className=' '>Welcome back, {user?.name}</button>
+                <button  className=' '>Welcome back, {user.name}</button>
                 </div>                
             ):(
                 <div className='flex gap-4'>
