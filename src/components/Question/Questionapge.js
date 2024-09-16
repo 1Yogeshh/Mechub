@@ -11,7 +11,7 @@ function QuestionPage({items}) {
       setActiveIndex(activeIndex === index ? null : index);
     };
   return (
-    <div className="w-[600px]">
+    <div className="md:w-[600px]">
       <div className='flex flex-col justify-center items-center mb-[50px]'>
         <h1 className='font-medium text-5xl'>FAQs</h1>
         <p className='font-medium text-gray-600 text-xl'>Get answers of your queries</p>
@@ -38,7 +38,7 @@ function QuestionPage({items}) {
               <p>{item.content}</p>
             </div>
           </div>
-          <div className='h-[1.5px] rounded ml-6 bg-gray-200 w-[560px]'></div>
+          <div className='h-[1.5px] rounded ml-6 bg-gray-200 md:w-[560px]'></div>
         </div>
       ))}
     </div>

@@ -21,7 +21,7 @@ const Start=()=> {
     useEffect(() => {
       const fetchProfile = async () => {
           try {
-              const response = await axios.get('https://mechub-server.vercel.app/api/auth/profile', {
+              const response = await axios.get('http://localhost:5000/api/auth/profile', {
                   headers: {
                       Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },
@@ -61,12 +61,12 @@ const Start=()=> {
   
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className=" h-16 pl-20 pr-20 flex items-center bg-[#5b23d7] text-white justify-between top-0 sticky">
+      <header className=" h-16 md:pl-20 md:pr-20 flex items-center bg-[#5b23d7] text-white justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
         <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-white to-white text-xl font-semibold">Mechub</span>
           
         </Link>
-        <nav className="ml-10 flex gap-4 sm:gap-12">
+        <nav className="ml-10 md:flex hidden gap-4 sm:gap-12">
           <Link href="#" className="text-sm flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
             <Gem size={16}/>Features
           </Link>
@@ -98,7 +98,7 @@ const Start=()=> {
             <div className="flex flex-col items-center justify-center text-center space-y-6 lg:flex-row lg:space-y-0 lg:space-x-12">
               <div className="flex flex-col justify-center items-center">
               
-                <div className="w-[900px]">
+                <div className="md:w-[900px]">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4">
                     Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] text-6xl font-semibold'>Mechub</span>
                   </h1>
@@ -148,7 +148,7 @@ const Start=()=> {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
+              <div className="flex flex-col justify-center space-y-4 md:ml-0 ml-[15px]">
                 <ul className="grid gap-6">
                   <li>
                     <div className="grid gap-1">
@@ -182,9 +182,9 @@ const Start=()=> {
               <img
                 src={Profile}
                 alt="Image"
-                className=" border-[1px] rounded shadow-lg h-[200px]"
+                className=" border-[1px] rounded shadow-lg h-[180px] md:ml-0 ml-[15px] md:h-[200px]"
               />
-              <img src={landing4} className=" border-[1px] h-[200px] ml-[150px] mt-4 rounded shadow-lg"></img>
+              <img src={landing4} className=" border-[1px] h-[180px] md:h-[200px] ml-[15px] md:ml-[150px] mt-4 rounded shadow-lg"></img>
               </div>
             </div>
           </div>
