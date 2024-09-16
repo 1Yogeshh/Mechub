@@ -35,7 +35,7 @@ const Login = () => {
     
     e.preventDefault();
     try {
-      const res = await axios.post('https://mechub-server.vercel.app/auth/login', { email, password });
+      const res = await axios.post('https://mechub-server.vercel.app/api/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/');
       toast.success(res.data.message)
