@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import pic from "./yogesh dp.jpg";
 
 function Sidenavbar() {
   const navigate = useNavigate();

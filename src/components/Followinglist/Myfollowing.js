@@ -1,30 +1,29 @@
-// src/components/FollowingList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import Navbar from './Navbar';
 
-const FollowingList = () => {
-  const { id, username } = useParams();
+const MyFollowingList = ({ userId }) => {
   const [following, setFollowing] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchFollowing = async () => {
       try {
+        if (!userId) {
+          throw new Error('User ID is not provided');
+        }
         const token = localStorage.getItem('token');
-        const res = await axios.get(`http://localhost:5000/api/auth/user/${id}`, {
+        const res = await axios.get(`https://mechub-server.vercel.app/api/auth/following`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFollowing(res.data.following);
       } catch (err) {
-        console.error(err);
+        console.error('Error fetching following:', err);
         setError('Error fetching following');
       }
     };
 
     fetchFollowing();
-  }, [id]);
+  }, [userId]);
 
   if (error) {
     return <p>{error}</p>;
@@ -36,18 +35,15 @@ const FollowingList = () => {
 
   return (
     <div>
-      <Navbar/>
-      <div>
-      <h2>{username}'s Following</h2>
-      {following.map((followedUser) => (
-        <div key={followedUser._id}>
-          <p>{followedUser.username}</p>
-          <p>{followedUser.name}</p>
+      <h2>Following</h2>
+      {following.map((user) => (
+        <div key={user._id}>
+          <p>{user.username}</p>
+          <p>{user.name}</p>
         </div>
       ))}
-    </div>
     </div>
   );
 };
 
-export default FollowingList;
+export default MyFollowingList;

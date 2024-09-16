@@ -42,7 +42,7 @@ const UpdateProfile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/auth/profile', {
+                const response = await axios.get('https://mechub-server.vercel.app/api/auth/profile', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },
@@ -65,7 +65,7 @@ const UpdateProfile = () => {
         try {
             const url = await uploadImg(img);
             await axios.put(
-                'http://localhost:5000/api/auth/updateprofile',
+                'https://mechub-server.vercel.app/api/auth/updateprofile',
                 { username, email, name, about, location, img:url.url },
                 {
                     headers: {
@@ -134,7 +134,7 @@ const UpdateProfile = () => {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                         className='border border-gray-400 outline-none rounded w-[500px] pl-2 pr-2 pt-1 pb-1'
-                        required
+                        
                     />
                 </div>
                 <div className='flex flex-col'>
@@ -143,7 +143,6 @@ const UpdateProfile = () => {
                         type="file"
                         onChange={imgChange}
                         className='border border-gray-400 outline-none rounded w-[500px] pl-2 pr-2 pt-1 pb-1'
-                        required
                     />
                 </div>
                 <div className="flex flex-col mt-4">

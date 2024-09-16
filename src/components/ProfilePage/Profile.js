@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar';
-import pic from "./yogesh dp.jpg"
+import Navbar from '../Navbar/Navbar';
 import { CircleUserRound, MapPin, PencilLine, Pi } from 'lucide-react';
-import Ownpost from "./Ownpost"
-import Sidenavbar from './Sidenavbar';
+import Ownpost from "../Posts/Ownpost"
+import Sidenavbar from '../Navbar/Sidenavbar';
 import { ColorRing } from 'react-loader-spinner';
 
 const Profile = () => {
@@ -15,7 +14,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/auth/profile', {
+                const response = await axios.get('https://mechub-server.vercel.app/api/auth/profile', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                     },

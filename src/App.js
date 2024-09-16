@@ -1,22 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Dashboard from './components/Dashboard';
-import PrivateRoute from './components/PrivateRoute';
-import UpdateProfile from './components/Updateprofile';
-import Profile from './components/Profile';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import Dashboard from './components/Home/Dashboard';
+import PrivateRoute from './components/PrivateRoutes/PrivateRoute';
+import UpdateProfile from './components/ProfilePage/Updateprofile';
+import Profile from './components/ProfilePage/Profile';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Start from './components/Start';
-import Otheruser from './components/Otheruser';
-import SinglePost from './components/Singlepost';
-import CreatePost from './components/CreatePost';
-import FollowersList from './components/FollowersList';
-import FollowingList from './components/FollowingList';
-import MyFollowersList from './components/Myfollowers';
-import MyFollowingList from './components/Myfollowing';
-import SearchUsers from './components/Search';
+import Start from './components/Start/Start';
+import Otheruser from './components/OtherProfile/Otheruser';
+import SinglePost from './components/Posts/Singlepost';
+import CreatePost from './components/Posts/CreatePost';
+import FollowersList from './components/Followinglist/FollowersList';
+import FollowingList from './components/Followinglist/FollowingList';
+import MyFollowersList from './components/Followinglist/Myfollowers';
+import MyFollowingList from './components/Followinglist/Myfollowing';
+import SearchUsers from './components/Search/Search';
 import "./App.css"
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
           <Route path="/post/:id" element={<SinglePost/>} />
           <Route path="/followers" element={<PrivateRoute><MyFollowersList/></PrivateRoute>} />
           <Route path="/following" element={<PrivateRoute><MyFollowingList/></PrivateRoute>} />
-          <Route path="/user/:id/following/:username" element={<PrivateRoute><FollowersList/></PrivateRoute>} />
+          <Route path="/user/:id/following/:username" element={<PrivateRoute><FollowingList/></PrivateRoute>} />
           <Route path="/user/:id/followers/:username" element={<PrivateRoute><FollowersList/></PrivateRoute>} />
         </Routes>
       </div>

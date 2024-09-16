@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
-import pic from "./yogesh dp.jpg";
 import { CircleUserRound, MapPin } from 'lucide-react';
 import { toast } from 'react-toastify';
-import Navbar from './Navbar';
-import Sidenavbar from './Sidenavbar';
+import Navbar from '../Navbar/Navbar';
+import Sidenavbar from '../Navbar/Sidenavbar';
 import { Star } from 'lucide-react';
 
 function Otheruser() {
@@ -22,7 +21,7 @@ function Otheruser() {
       const token = localStorage.getItem('token');
       
       // Fetch user profile
-      const userResponse = await axios.get(`http://localhost:5000/api/auth/profile/${username}`, {
+      const userResponse = await axios.get(`https://mechub-server.vercel.app/api/auth/profile/${username}`, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true
       });
@@ -30,7 +29,7 @@ function Otheruser() {
       setIsFollowing(userResponse.data.isFollowing);
 
       // Fetch user posts
-      const postsResponse = await axios.get(`http://localhost:5000/api/auth/posts/${userResponse.data._id}`, {
+      const postsResponse = await axios.get(`https://mechub-server.vercel.app/api/auth/posts/${userResponse.data._id}`, {
         headers: { Authorization: `Bearer ${token}` },
         withCredentials: true
       });
@@ -46,25 +45,40 @@ function Otheruser() {
     fetchUser();
   }, [username]);
 
-  // Handle follow/unfollow action
   const handleFollow = async () => {
     try {
       const token = localStorage.getItem('token');
       const endpoint = isFollowing ? 'unfollow' : 'follow';
       const url = `http://localhost:5000/api/auth/${endpoint}`;
       
+      // Perform follow/unfollow action
       await axios.post(url, { followId: user._id }, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      // Refetch user data to update the follow status and counts
-      await fetchUser();
+  
+      // Toggle the follow state locally
+      setIsFollowing(!isFollowing);
+  
+      // Update the followers count locally
+      if (isFollowing) {
+        setUser(prevUser => ({
+          ...prevUser,
+          followers: prevUser.followers.filter(follower => follower !== token), // Remove current user from followers
+        }));
+      } else {
+        setUser(prevUser => ({
+          ...prevUser,
+          followers: [...prevUser.followers, token], // Add current user to followers
+        }));
+      }
+  
       toast.success(`Successfully ${isFollowing ? 'unfollowed' : 'followed'} ${user.username}`);
     } catch (error) {
       console.error('Error following/unfollowing user:', error);
       toast.error('An error occurred while updating follow status.');
     }
   };
+  
 
   if (loading) {
     return <p>Loading...</p>;

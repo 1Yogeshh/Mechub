@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
-import Sidenavbar from './Sidenavbar';
+import Navbar from '../Navbar/Navbar';
+import Sidenavbar from '../Navbar/Sidenavbar';
 import { EllipsisVertical, Search } from 'lucide-react';
-import pic from "./yogesh dp.jpg"
+import pic from "../Assests/yogesh dp.jpg"
 
 const SearchUsers = () => {
     const [query, setQuery] = useState('');
@@ -14,7 +14,7 @@ const SearchUsers = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:5000/api/auth/search?query=${query}`,{
+            const response = await axios.get(`https://mechub-server.vercel.app/api/auth/search?query=${query}`,{
                 headers: {
                         'Authorization': `Bearer ${token}`
                     },
@@ -51,7 +51,7 @@ const SearchUsers = () => {
             {results.map((user) => (
                     <li key={user._id} className='bg-white mt-4 w-[560px] mr-8 rounded-lg shadow h-[80px]'>
                         <Link to={`/user/${user.username}`} className='flex items-center'>
-                            <img src={pic} className='h-[60px] w-[60px] rounded-full mt-3 ml-6'></img>
+                            <img src={user?.img} className='h-[60px] w-[60px] rounded-full mt-3 ml-6'></img>
                             <div className='ml-2 mt-2'><p className='font-medium text-[17px]'>{user.name}</p><p className='text-gray-500 text-[15px]'>{user.username}</p></div>
                             <EllipsisVertical className='ml-[330px]' size={20}/>
                         </Link>

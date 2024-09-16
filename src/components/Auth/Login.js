@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { getUser } from '../redux/userSlice';
+import { getUser } from '../../redux/userSlice';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Lock, Mail } from 'lucide-react';
@@ -35,7 +35,7 @@ const Login = () => {
     
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post('https://mechub-server.vercel.app/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/');
       toast.success(res.data.message)

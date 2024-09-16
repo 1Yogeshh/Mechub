@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from '../Navbar/Navbar';
 import { EllipsisVertical, File } from 'lucide-react';
-import Sidenavbar from './Sidenavbar';
-import pic from "./yogesh pic.jpg"
+import Sidenavbar from '../Navbar/Sidenavbar';
 
 const SinglePost = () => {
     const [post, setPost] = useState(null);
@@ -14,7 +13,7 @@ const SinglePost = () => {
     useEffect(() => {
         const getPost = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/auth/files/${id}`);
+                const response = await axios.get(`https://mechub-server.vercel.app/api/auth/files/${id}`);
                 setPost(response.data); // Access the data property
                 
             } catch (error) {
@@ -37,16 +36,16 @@ const SinglePost = () => {
                         <div className="text-red-500 text-center mt-10">{error}</div>
                     ) : post ? (
                         <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-                            <div className=" items-center justify-between mb-4">
+                            <div className=" items-center justify-between mb-4 flex">
                                 <div className='flex items-center'>
-                                    <img src={pic} className='h-[50px] w-[50px] rounded-full'></img>
+                                    <img src={post.user.img} className='h-[50px] w-[50px] rounded-full'></img>
                                     <div className='ml-2'>
                                     <p className=" text-[19px] mt-1">{post.user.name}</p>
                                     <span className='text-[16px] text-gray-600'>{post.user.username}</span>
                                     </div>
-                                    <div>
-                                    <EllipsisVertical size={20} className='ml-[550px] hover:cursor-pointer'/>
-                                    </div>
+                                </div>
+                                <div>
+                                    <EllipsisVertical size={20} className='hover:cursor-pointer text-gray-600 '/>
                                 </div>
                             </div>
                             <div className="border-t border-gray-200 py-2">
@@ -76,7 +75,7 @@ const SinglePost = () => {
                             )}
                             {post.image && (
                                 <img
-                                    className="w-full h-auto mt-6 rounded-lg shadow-lg"
+                                    className="w-full h-auto mt-6 rounded-lg shadow-lg max-h-[500px]"
                                     src={post.image}
                                     alt={post.title}
                                 />

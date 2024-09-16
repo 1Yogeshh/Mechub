@@ -3,9 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Ellipsis, Star, ThumbsUp } from 'lucide-react';
 import { useDispatch } from 'react-redux';
-import { getRefresh } from '../redux/postSlice';
 import { ChartNoAxesColumn } from 'lucide-react';
-import pic from "./yogesh dp.jpg";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -15,13 +13,12 @@ const Home = () => {
         const getPosts = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/api/auth/ownpost', {
+                const response = await axios.get('https://mechub-server.vercel.app/api/auth/ownpost', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     },
                 });
                 setPosts(response.data);
-                dispatch(getRefresh());
             } catch (error) {
                 console.error('Error fetching posts:', error);
                 setPosts([]);

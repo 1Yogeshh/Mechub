@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ColorRing } from 'react-loader-spinner';
-import { Box, Cable, ChevronRight, File, FolderUp, Gem, MoveDownRight, Shapes, Triangle, User } from 'lucide-react';
-import Navbar from "./Navbar"
+import { Box, Cable, ChevronRight, Computer, File, FolderUp, Gem, MoveDownRight, Shapes, Sparkle, Triangle, User } from 'lucide-react';
+import Navbar from "../Navbar/Navbar"
 import { Link } from 'react-router-dom';
 import { PowerIcon } from 'lucide-react';
-import Startnav from './Startnav';
-import Profile from "./profile.png"
-import Landing1 from "./Untitled.png"
-import landing4 from "./landing 4.png"
+import Profile from "../Assests/profile.png"
+import Landing1 from "../Assests/Untitled.png"
+import landing4 from "../Assests/landing 4.png"
 import axios from 'axios';
-import Question from './Question';
+import Question from '../Question/Question';
 const Start=()=> {
     const navigate=useNavigate();
     const token= localStorage.getItem('token')
@@ -22,7 +21,7 @@ const Start=()=> {
     useEffect(() => {
       const fetchProfile = async () => {
           try {
-              const response = await axios.get('http://localhost:5000/api/auth/profile', {
+              const response = await axios.get('https://mechub-server.vercel.app/api/auth/profile', {
                   headers: {
                       Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },
@@ -62,10 +61,10 @@ const Start=()=> {
   
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className="px-4 lg:px-6 h-14 flex items-center bg-[#5b23d7] text-white justify-between">
+      <header className=" h-16 pl-20 pr-20 flex items-center bg-[#5b23d7] text-white justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
-          <Triangle className="mr-2" size={20} />
-          <span className="text-xl font-bold">Mechub</span>
+        <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-white to-white text-xl font-semibold">Mechub</span>
+          
         </Link>
         <nav className="ml-10 flex gap-4 sm:gap-12">
           <Link href="#" className="text-sm flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
@@ -86,25 +85,22 @@ const Start=()=> {
                 <button  className=' '>Welcome back, {user?.name}</button>
                 </div>                
             ):(
-                <div>
-                <button onClick={()=>navigate('/login')} className='bg-[#5b23d7] border-[#5b23d7] pt-3 pb-3 text-sm pl-8 pr-8 rounded-lg text-white font-medium border-[2px] hover:text-[#5b23d7] hover:bg-white'>Signin</button>
-                <button onClick={()=>navigate('/register')} className='pt-3 pb-3 pl-7 text-sm pr-7 rounded-lg font-medium border-[2px] border-[#5b23d7] text-[#5b23d7] ml-6 mr-6 hover:bg-[#5b23d7] hover:text-white'>Signup</button>
+                <div className='flex gap-4'>
+                <button onClick={()=>navigate('/login')} className='text-sm bg-white h-[35px] mt-1   text-[#5b23d7] w-[100px] rounded-md font-medium '>Login</button>
                 </div>
             )
         }
       </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 mt-[100px] lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
+        <section className="w-full py-12 mb-4 md:py-24 mt-[100px] lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center text-center space-y-6 lg:flex-row lg:space-y-0 lg:space-x-12">
               <div className="flex flex-col justify-center items-center">
-              <div className='h-2 w-2 relative  animate-ping  flex items-center justify-center mb-2' >
-                  <Triangle className='text-[#5b23d7] p-1 absolute animate-spin font-bold mb-2' size={18}/>
-              </div>
+              
                 <div className="w-[900px]">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4">
-                    Unleash Your Mechanical Genius with <span className='text-[#5b23d7]'>Mechub</span>
+                    Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] text-6xl font-semibold'>Mechub</span>
                   </h1>
                   <p className=" text-muted-foreground md:text-xl mb-4 font-medium text-gray-600">
                     Mechub is a platform for mechanical students and engineers to showcase their designs, projects, and
@@ -115,20 +111,20 @@ const Start=()=> {
                 <div className="flex flex-col gap-4 min-[400px]:flex-row">
                   {token?<a
                     href="/dashboard"
-                    className="bg-[#5b23d7] hover:bg-white hover:text-[#5b23d7] border-[1px] border-[#5b23d7] shadow-lg text-white h-10 rounded-md w-[150px] flex justify-center items-center"
+                    className="bg-[#5b23d7] hover:bg-white hover:text-[#5b23d7] border-[1px] border-[#5b23d7] shadow-lg text-white h-10 rounded-md w-[170px] flex justify-center items-center"
                     
                   >
                     Dashbaord
-                  </a>:<Link
-                    href="#"
-                    className="bg-[#5b23d7] hover:bg-white hover:text-[#5b23d7] border-[1px] border-[#5b23d7] shadow-lg text-white h-10 rounded-md w-[150px] flex justify-center items-center"
+                  </a>:<a
+                    href="/register"
+                    className="bg-[#5b23d7] hover:bg-white hover:text-[#5b23d7] border-[1px] border-[#5b23d7] shadow-lg text-white h-10 rounded-md w-[170px] flex justify-center items-center"
                     prefetch={false}
                   >
-                    Sign Up
-                  </Link>}
+                    Register Now
+                  </a>}
                   <Link
                     href="#"
-                    className="bg-white shadow-lg border-[1px] h-10 rounded-md w-[150px] flex justify-center items-center"
+                    className="bg-white shadow-lg border-[1px] h-10 rounded-md w-[170px] flex justify-center items-center hover:bg-gray-200"
                     prefetch={false}
                   >
                     Learn More
@@ -138,10 +134,10 @@ const Start=()=> {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted flex flex-col justify-center items-center">
+          <div className="container flex justify-center items-center flex-col">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center w-full">
+              <div className="space-y-2 flex flex-col justify-center items-center text-center">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   Features That Empower Mechanical Innovators
                 </h2>
@@ -193,7 +189,7 @@ const Start=()=> {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-32 flex flex-col justify-center items-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -244,72 +240,11 @@ const Start=()=> {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Our Client Feedback</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-600">
-                  Check out what our clients have to say about Mechub!
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-8">
-              <div className="bg-zinc-100 h-[300px] shadow-lg rounded-lg p-6 space-y-4">
-                <div className="flex items-center gap-4">
-                <div className="w-10 h-10 border bg-[#5b23d7] text-white flex justify-center items-center rounded-lg">
-                    <User size={22} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Pankaj Kumar Singh</h4>
-                    <p className="text-sm text-muted-foreground">Mechanical Engineer</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground">
-                  "Mechub has been a game-changer for my mechanical engineering career. The platform has allowed me to
-                  showcase my work, collaborate with peers, and connect with industry professionals. Highly
-                  recommended!"
-                </p>
-              </div>
-              <div className="bg-zinc-100 h-[300px] shadow-lg rounded-lg p-6 space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 border bg-[#5b23d7] text-white flex justify-center items-center rounded-lg">
-                    <User size={22} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Ashish Kumar</h4>
-                    <p className="text-sm text-muted-foreground">Mechanical Designer</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground">
-                  "I've been using Mechub for the past year, and it has been an invaluable tool for my mechanical design
-                  work. The platform's user-friendly interface and collaboration features have made it easy to share my
-                  projects and get feedback from the community."
-                </p>
-              </div>
-              <div className="bg-zinc-100 h-[300px] shadow-lg rounded-lg p-6 space-y-4">
-                <div className="flex items-center gap-4">
-                <div className="w-10 h-10 border bg-[#5b23d7] text-white flex justify-center items-center rounded-lg">
-                    <User size={22} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold">Ravi Kumar</h4>
-                    <p className="text-sm text-muted-foreground">Mechanical Technician</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground">
-                  "As a mechanical technician, I've found Mechub to be an invaluable resource for staying up-to-date
-                  with the latest trends and technologies in the field. The platform's educational content and community
-                  discussions have helped me improve my skills and stay competitive in the job market."
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+       
         <div className='mb-[200px]'>
         <Question/>
         </div>
-        <section className="w-full bg-[#5b23d7] py-12 md:py-24 lg:py-20 bg-muted text-white rounded-t-xl">
+        <section className="w-full bg-[#5b23d7] py-12 md:py-24 lg:py-20 bg-muted text-white rounded-t-xl flex flex-col justify-center items-center">
           <div className="container flex  flex-col items-center text-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
             <div className="">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Join the Mechub Community</h2>

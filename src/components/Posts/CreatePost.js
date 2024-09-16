@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Navbar from "./Navbar"
+import Navbar from "../Navbar/Navbar"
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import Sidenavbar from './Sidenavbar';
+import Sidenavbar from '../Navbar/Sidenavbar';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -58,7 +58,7 @@ const CreatePost = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/auth/create', formData, {
+      await axios.post('https://mechub-server.vercel.app/api/auth/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,

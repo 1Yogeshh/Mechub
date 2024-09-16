@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { ChartNoAxesColumn, Ellipsis, Rocket, Star } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { formatDistanceToNow } from 'date-fns';
-import { getRefresh } from '../redux/postSlice';
+import { getRefresh } from '../../redux/postSlice';
 
-import pic from "./yogesh dp.jpg"; // Sample user picture
 
 const Post = () => {
     const [posts, setPosts] = useState([]);
@@ -16,7 +15,7 @@ const Post = () => {
         const getPosts = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/api/auth/files', {
+                const response = await axios.get('https://mechub-server.vercel.app/api/auth/files', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     },
@@ -35,10 +34,10 @@ const Post = () => {
     }, [dispatch]);
 
     return (
-        <div className='ml-[200px] w-[800px] mb-20'>
+        <div className=' w-[800px] mb-20'>
             {posts.length > 0 ? (
                 posts.map(post => (
-                    <div key={post._id} className='shadow-lg hover:shadow-2xl transition-shadow duration-300 rounded-lg text-left p-6 mt-6 bg-white border-t-4 border-[#5b23d7]'>
+                    <div key={post._id} className='shadow-lg hover:shadow-2xl transition-shadow duration-300 rounded-lg text-left p-6 mt-6 bg-white border-l-2 border-t-2 border-[#5b23d7]'>
                         <div className='flex justify-between items-center'>
                             <div className='flex items-start'>
                                 <img className='h-12 w-12 rounded-full mr-4' src={post.user.img} alt="User" />
@@ -46,15 +45,15 @@ const Post = () => {
                                     <div className='flex'>
                                         <p className='font-bold text-[18px] text-[#5b23d7]'>{post.user.name}</p>
                                         <p className='text-sm text-gray-500 mt-[6px] ml-1 flex gap-1'>
-                                            made this project <Rocket size={18}/>
+                                            made this project <Rocket size={18} className='text-[#5b23d7]'/>
                                         </p>
                                     </div>
-                                    <p className='text-xs text-gray-400 mt-1'>
+                                    <p className='text-[13px] text-gray-400'>
                                         {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
                                     </p>
                                 </div>
                             </div>
-                            <Ellipsis className='text-gray-400 hover:text-[#5b23d7] cursor-pointer' />
+                            <Ellipsis className='text-black hover:text-[#5b23d7] cursor-pointer' />
                         </div>
                         <div className='shadow-inner bg-gray-50 hover:bg-gray-100 pb-6 pl-6 pr-6 rounded-lg mt-4 pt-4'>
                             <Link className='hover:text-[#5b23d7] hover:underline font-medium text-[16px] flex items-center gap-2' to={`/post/${post._id}`}>
@@ -62,8 +61,8 @@ const Post = () => {
                                 {post.user.username}/<span>{post.title}</span>
                             </Link>
                             <p className='text-sm text-gray-600 h-auto ml-10 mt-3'>{post.description}</p>
-                            <p className='flex gap-2 text-lg mt-6 font-normal ml-10 text-[#5b23d7]'>
-                                <Star className='' size={22} /> 0
+                            <p className='flex gap-2 text-sm mt-6 font-normal ml-10 border-[2px] rounded border-black justify-center items-center w-[100px] '>
+                                <Star className='text-black' size={18} /> | Star
                             </p>
                         </div>
                     </div>

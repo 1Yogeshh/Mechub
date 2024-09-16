@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import logo from './MEC UB_20240831_150344_0000.png';
-import { Github } from 'lucide-react';
+import { Triangle } from 'lucide-react';
 
 function Navbar() {
   const [user, setUser] = useState(null);
@@ -14,7 +13,7 @@ function Navbar() {
       // Fetch user data if token exists
       const fetchUser = async () => {
         try {
-          const response = await fetch('http://localhost:5000/api/auth/profile', {
+          const response = await fetch('https://mechub-server.vercel.app/api/auth/profile', {
             headers: { Authorization: `Bearer ${token}` },
           });
           const data = await response.json();
@@ -35,14 +34,15 @@ function Navbar() {
 
   return (
     <>
-      <div className='flex h-16 items-center w-full justify-between'>
-        <div className='flex gap-4 ml-10'>
-          <img src={logo} className='h-[110px] mt-8' alt='Logo' />
+      <div className='flex h-16 items-center w-full justify-between bg-white shadow'>
+        <div className='flex ml-12 justify-center items-center'>
+        <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-[#5b23d7] to-white text-xl font-semibold">Mechub</span>
+        
         </div>
         <div className='flex items-center mr-10'>
           {token ? (
-            <div className='flex items-center gap-4'>
-              <p className='text-[17px] font-medium text-gray-700'>Welcome back, <span className='text-[#5b23d7] underline'>{user?.name}</span></p>
+            <div className='flex items-center gap-6'>
+              <p className='text-[17px] font-medium flex gap-2'>Welcome back, <span className=' underline text-[#5b23d7] font-semibold'>{user?.name}</span> <img src={user?.img} className='h-[30px] w-[30px] ml-2 rounded-full'></img></p>
               {/*<button
                 onClick={handleLogout}
                 className='bg-[#5b23d7] border-[#5b23d7] px-6 py-2 rounded text-sm text-white font-medium border-[2px] hover:text-[#5b23d7] hover:bg-white'
