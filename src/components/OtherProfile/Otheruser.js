@@ -49,7 +49,7 @@ function Otheruser() {
     try {
       const token = localStorage.getItem('token');
       const endpoint = isFollowing ? 'unfollow' : 'follow';
-      const url = `http://localhost:5000/api/auth/${endpoint}`;
+      const url = `https://mechub-server.vercel.app/api/auth/${endpoint}`;
       
       // Perform follow/unfollow action
       await axios.post(url, { followId: user._id }, {
