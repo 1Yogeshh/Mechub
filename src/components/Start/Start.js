@@ -99,7 +99,7 @@ const Start=()=> {
               <div className="flex flex-col justify-center items-center">
               
                 <div className="md:w-[900px]">
-                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none mb-4">
+                  <h1 className="text-4xl font-bold  sm:text-5xl xl:text-6xl/none mb-4 tracking-normal">
                     Unleash Your Mechanical Genius with <span className='logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] md:text-6xl text-4xl font-bold'>Mechub</span>
                   </h1>
                   <p className=" text-muted-foreground md:text-xl mb-4 font-medium text-gray-600">
@@ -138,7 +138,7 @@ const Start=()=> {
           <div className="container flex justify-center items-center flex-col">
             <div className="flex flex-col items-center justify-center space-y-4 text-center w-full">
               <div className="space-y-2 flex flex-col justify-center items-center text-center">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                <h2 className="text-3xl font-bold tracking-normal sm:text-5xl">
                   Features That Empower Mechanical Innovators
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-600">
@@ -193,7 +193,7 @@ const Start=()=> {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">How Mechub Works</h2>
+                <h2 className="text-3xl font-bold tracking-normal sm:text-5xl">How Mechub Works</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-600">
                   Mechub is designed to be intuitive and easy to use, so you can focus on showcasing your mechanical
                   expertise.
@@ -247,7 +247,7 @@ const Start=()=> {
         <section className="w-full bg-[#5b23d7] py-12 md:py-24 lg:py-20 bg-muted text-white rounded-t-xl flex flex-col justify-center items-center">
           <div className="container flex  flex-col items-center text-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
             <div className="">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Join the Mechub Community</h2>
+              <h2 className="text-3xl font-bold tracking-normal md:text-4xl/tight">Join the Mechub Community</h2>
               <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Sign up today and start showcasing your mechanical expertise to the world.
               </p>
