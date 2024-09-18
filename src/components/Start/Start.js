@@ -67,13 +67,13 @@ const Start=()=> {
           
         </Link>
         <nav className="ml-10 md:flex hidden gap-4 sm:gap-12">
-          <Link href="#" className="text-sm flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-[15px] flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
             <Gem size={16}/>Features
           </Link>
-          <Link href="#" className="text-sm flex gap-2 font-medium justify-center items-center hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-[15px] flex gap-2 font-medium justify-center items-center hover:underline underline-offset-4" prefetch={false}>
             <Box size={16}/>How it Works
           </Link>
-          <Link href="#" className="text-sm flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="#" className="text-[15px] flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
             <Cable size={16}/>Contact
           </Link>
           
@@ -111,7 +111,7 @@ const Start=()=> {
                 <div className="flex flex-col gap-4 min-[400px]:flex-row">
                   {token?<a
                     href="/dashboard"
-                    className="bg-[#5b23d7] hover:bg-white hover:text-[#5b23d7] border-[1px] border-[#5b23d7] shadow-lg text-white h-10 rounded-md w-[170px] flex justify-center items-center"
+                    className="bg-[#5b23d7] hover:bg-white hover:text-[#5b23d7] border-[1px] border-[#5b23d7] shadow-lg text-white h-10 rounded-md w-[180px] flex justify-center items-center"
                     
                   >
                     Dashbaord
