@@ -82,7 +82,7 @@ const Start=()=> {
         {
           localStorage.getItem('token')?(
                 <div>
-                <button  className=' '>{user?.name}<img className='h-[30px] w-[30px] ml-2 rounded-full' src={user?.img}></img></button>
+                <button  className='flex '>{user?.name}<img className='h-[30px] w-[30px] ml-2 rounded-full' src={user?.img}></img></button>
                 </div>                
             ):(
                 <div className='flex gap-4'>
