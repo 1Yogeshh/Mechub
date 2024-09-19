@@ -61,7 +61,7 @@ const Start=()=> {
   
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className=" h-16 md:pl-32 md:pr-32 pl-4 pr-4 bg-white flex items-center  justify-between top-0 sticky">
+      <header className=" h-16 md:pl-32 md:pr-32 pl-4 pr-4 bg-[#5b23d7] text-white flex items-center  justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
         <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] text-xl font-[700]">Mechub</span>
           
@@ -82,7 +82,7 @@ const Start=()=> {
         {
           localStorage.getItem('token')?(
                 <div>
-                <button  className='flex '>{user?.name}<img className='h-[30px] w-[30px] ml-2 rounded-full' src={user?.img}></img></button>
+                <button  className='flex justify-center items-center '>{user?.name}<img className='h-[30px] w-[30px] ml-2 rounded-full' src={user?.img}></img></button>
                 </div>                
             ):(
                 <div className='flex gap-4'>
