@@ -63,18 +63,18 @@ const Start=()=> {
     <div className="flex flex-col min-h-[100dvh]">
       <header className=" h-16 md:pl-32 md:pr-32 pl-4 pr-4 bg-[#5b23d7] text-white flex items-center  justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
-        <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] text-xl font-[700]">Mechub</span>
+        <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-white to-white text-xl font-[700]">Mechub</span>
           
         </Link>
         <nav className="ml-10 md:flex hidden gap-4 sm:gap-12">
           <Link href="#" className="text-[15px] flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
-            <Gem size={16} className='text-[#5b23d7]'/>Features
+            <Gem size={16}/>Features
           </Link>
           <Link href="#" className="text-[15px] flex gap-2 font-medium justify-center items-center hover:underline underline-offset-4" prefetch={false}>
-            <Box size={16} className='text-[#5b23d7]'/>How it Works
+            <Box size={16}/>How it Works
           </Link>
           <Link href="#" className="text-[15px] flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
-            <Cable size={16} className='text-[#5b23d7]'/>Contact
+            <Cable size={16}/>Contact
           </Link>
           
         </nav>
