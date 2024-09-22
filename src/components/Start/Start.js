@@ -129,7 +129,7 @@ const Start=()=> {
                   </a>}
                   <Link
                     href="#"
-                    className="bg-white shadow-lg border-[1px] h-10 rounded-md w-[170px] flex justify-center items-center hover:bg-gray-200"
+                    className="bg-white shadow-lg border-[1px] h-10 rounded-md w-[180px] flex justify-center items-center hover:bg-gray-200"
                     prefetch={false}
                   >
                     Learn More
