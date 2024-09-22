@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ColorRing } from 'react-loader-spinner';
-import { Box, Cable, ChevronRight, Computer, File, FolderUp, Gem, MoveDownRight, Shapes, Sparkle, Triangle, User } from 'lucide-react';
+import { ArrowRight, Box, Cable, ChevronRight, Computer, File, FolderUp, Gem, MoveDownRight, Shapes, Sparkle, Triangle, User } from 'lucide-react';
 import Navbar from "../Navbar/Navbar"
 import { Link } from 'react-router-dom';
 import { PowerIcon } from 'lucide-react';
@@ -61,7 +61,7 @@ const Start=()=> {
   
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className=" h-16 md:pl-32 md:pr-32 pl-4 pr-4 bg-[#5b23d7] text-white flex items-center  justify-between top-0 sticky">
+      <header className=" h-16 md:pl-32 md:pr-28 pl-4 pr-4 bg-[#5b23d7] text-white flex items-center  justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
         <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-white to-white text-xl font-[700]">Mechub</span>
           
@@ -78,19 +78,24 @@ const Start=()=> {
           </Link>
           
         </nav>
-        <div className=''>
+        <div className='flex gap-4'>
         {
           localStorage.getItem('token')?(
-                <div>
-                <button  className='flex justify-center items-center '>{user?.name}<img className='h-[30px] w-[30px] ml-2 rounded-full' src={user?.img}></img></button>
-                </div>                
+                <div className='flex gap-6'>
+                <button  className='flex justify-center text-sm items-center border-[1px] border-white  w-[120px] h-[37px] rounded'>Logout</button>
+                <button onClick={()=>navigate('/dashboard')} className='flex justify-center text-sm items-center bg-white text-[#5b23d7] w-[150px] h-[37px] rounded gap-2'>Get Started <ArrowRight size={16}/></button>
+                </div>   
+                             
             ):(
                 <div className='flex gap-4'>
-                <button onClick={()=>navigate('/login')} className='text-sm bg-white h-[35px] mt-1   text-[#5b23d7] w-[100px] rounded-md font-medium '>Login</button>
+                <button onClick={()=>navigate('/login')} className='flex justify-center text-sm items-center bg-white text-[#5b23d7] w-[120px] h-[35px] rounded gap-2'>Login</button>
+                <button className='flex justify-center text-sm items-center bg-white text-[#5b23d7] w-[120px] h-[35px] rounded gap-2'>Get Started <ArrowRight size={16}/></button>
                 </div>
             )
         }
+        
       </div>
+      
       </header>
       <main className="flex-1">
         <section className="w-full py-12 mb-[100px] md:py-24 mt-[100px]  lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
