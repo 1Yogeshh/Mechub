@@ -60,30 +60,30 @@ const Start=()=> {
     },[])*/
   
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <header className=" h-16 md:pl-32 md:pr-28 pl-4 pr-4 bg-[#5b23d7] text-white flex items-center  justify-between top-0 sticky">
+    <div className="flex flex-col min-h-[100dvh] bg-zinc-100">
+      <header className=" h-16 md:pl-8 md:pr-8 pl-4 pr-4 bg-white md:ml-32 md:mt-4 mt-4 shadow-lg  rounded-lg md:mr-32 ml-4 mr-4 flex items-center  justify-between top-0 sticky">
         <Link href="#" className="flex items-center justify-center" prefetch={false}>
-        <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-[#5b23d7] via-white to-white text-xl font-[700]">Mechub</span>
+        <span class="logo text-transparent bg-clip-text bg-gradient-to-t from-white via-[#5b23d7] to-[#5b23d7] text-xl font-[700]">Mechub</span>
           
         </Link>
         <nav className="ml-10 md:flex hidden gap-4 sm:gap-12">
           <Link href="#" className="text-[15px] flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
-            <Gem size={16}/>Features
+            <Gem size={16} className='text-[#5b23d7]'/>Features
           </Link>
           <Link href="#" className="text-[15px] flex gap-2 font-medium justify-center items-center hover:underline underline-offset-4" prefetch={false}>
-            <Box size={16}/>How it Works
+            <Box size={16} className='text-[#5b23d7]'/>How it Works
           </Link>
           <Link href="#" className="text-[15px] flex gap-2 justify-center items-center font-medium hover:underline underline-offset-4" prefetch={false}>
-            <Cable size={16}/>Contact
+            <Cable size={16} className='text-[#5b23d7]'/>Contact
           </Link>
           
         </nav>
         <div className='flex gap-4'>
         {
           localStorage.getItem('token')?(
-                <div className='flex gap-6'>
-                <button  className='flex justify-center text-sm items-center border-[1px] border-white  w-[120px] h-[37px] rounded'>Logout</button>
-                <button onClick={()=>navigate('/dashboard')} className='flex justify-center text-sm items-center bg-white text-[#5b23d7] w-[150px] h-[37px] rounded gap-2'>Get Started <ArrowRight size={16}/></button>
+                <div className='flex md:gap-6 gap-2'>
+                <button  className='flex justify-center text-sm items-center border-[1px] text-[#5b23d7] border-[#5b23d7]  md:w-[120px] w-[80px] h-[37px] rounded'>Logout</button>
+                <button onClick={()=>navigate('/dashboard')} className='flex  justify-center text-sm items-center bg-[#5b23d7] text-white md:w-[150px] w-[100px] h-[37px] rounded md:gap-2'>Get Started <ArrowRight size={16}/></button>
                 </div>   
                              
             ):(
@@ -98,7 +98,7 @@ const Start=()=> {
       
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 mb-[100px] md:py-24 mt-[100px]  lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
+        <section className="w-full py-12 mb-[100px] md:py-24 mt-[80px]  lg:py-30 flex flex-col items-center justify-center space-y-4 text-center">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center text-center space-y-6 lg:flex-row lg:space-y-0 lg:space-x-12">
               <div className="flex flex-col justify-center items-center">
