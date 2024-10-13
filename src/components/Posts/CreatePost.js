@@ -58,16 +58,17 @@ const CreatePost = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('https://mechub-server.vercel.app/api/auth/create', formData, {
+      const res = await axios.post('https://mechub-server.vercel.app/api/auth/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
         },
       });
-      toast("Post created successfully");
+      toast.success(res.data.message);
       navigate('/dashboard');
     } catch (error) {
-      toast("All fields are required");
+      toast.error(error.res);
+      
     }
   };
 
