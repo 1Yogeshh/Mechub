@@ -12,6 +12,7 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [imageLoad, setImageLoad] = useState(false);
+  const [fileLoad, setFileLoad] = useState(false);
 
   const imageChange = (e) => {
     const file = e.target.files[0];
@@ -40,6 +41,33 @@ const CreatePost = () => {
     }
   }
 
+  const fileChange = (e) => {
+    const file = e.target.files[0];
+    setFile(file);
+  }
+
+  const uploadFile = async () => {
+    const data = new FormData();
+    data.append('file', file);
+    data.append('upload_preset', 'evagczqi'); // Your Cloudinary preset
+
+    try {
+      setFileLoad(true);
+      let response = await fetch('https://api.cloudinary.com/v1_1/dom60njrq/image/upload', {
+        method: 'POST',
+        body: data,
+      });
+      let urlData = await response.json(); // Correctly await the JSON response
+      setFileLoad(false);
+      return urlData.secure_url; // Get the secure URL for the uploaded image
+    } catch (error) {
+      console.error(error);
+      setFileLoad(false);
+      toast("Image upload failed");
+      return null;
+    }
+  }
+
   const handleCreatePost = async (e) => {
     e.preventDefault();
   
@@ -61,17 +89,34 @@ const CreatePost = () => {
       imageUrl = await uploadImage();
       if (!imageUrl) return; // If image upload failed, exit the function
     }
+
+    // Upload image if it exists
+    let fileUrl = null;
+    if (file) {
+      fileUrl = await uploadFile();
+      if (!fileUrl) return; // If image upload failed, exit the function
+    }
   
-    const formData = new FormData();
+    /*const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
-    if (file) formData.append('file', file);
+    if (fileUrl) formData.append('file', fileUrl);
     if (imageUrl) formData.append('image', imageUrl);
+    
+    // Logging the FormData content
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value); // Check what's being added to FormData
+  }*/
+      const postData = {
+        title: title,
+        description: description,
+        image: imageUrl,
+        file: fileUrl
+      };
   
     try {
-      const res = await axios.post('https://mechub-server.vercel.app/api/auth/create', formData, {
+      const res = await axios.post(' http://localhost:5000/api/auth/create', postData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
         },
       });
@@ -127,7 +172,7 @@ const CreatePost = () => {
               <input
                 className='bg-white h-10 pt-1 pl-2 rounded font-medium border-[1px] border-gray-200 text-sm'
                 type="file"
-                onChange={(e) => setFile(e.target.files[0])}
+                onChange={fileChange}
               />
               <p className='font-medium mt-1'>Image</p>
               <input
