@@ -115,7 +115,7 @@ const CreatePost = () => {
       };
   
     try {
-      const res = await axios.post(' http://localhost:5000/api/auth/create', postData, {
+      const res = await axios.post(' https://mechub-server.vercel.app/api/auth/create', postData, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
