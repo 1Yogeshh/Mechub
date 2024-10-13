@@ -69,7 +69,7 @@ const CreatePost = () => {
     if (imageUrl) formData.append('image', imageUrl);
   
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/create', formData, {
+      const res = await axios.post('https://mechub-server.vercel.app/api/auth/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
