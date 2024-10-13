@@ -42,35 +42,60 @@ const CreatePost = () => {
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
-
-    // First, upload the image if it exists
+  
+    if (!title || !description) {
+      toast.error("Title and description are required");
+      return;
+    }
+  
+    // Retrieve the token and validate
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error("Authentication required. Please log in.");
+      return;
+    }
+  
+    // Upload image if it exists
     let imageUrl = null;
     if (image) {
       imageUrl = await uploadImage();
       if (!imageUrl) return; // If image upload failed, exit the function
     }
-
+  
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
     if (file) formData.append('file', file);
-    if (imageUrl) formData.append('image', imageUrl); // Use the image URL from Cloudinary
-
+    if (imageUrl) formData.append('image', imageUrl);
+  
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.post('https://mechub-server.vercel.app/api/auth/create', formData, {
+      const res = await axios.post('http://localhost:5000/api/auth/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`,
         },
       });
       toast.success(res.data.message);
+      
+      // Clear form
+      setTitle('');
+      setDescription('');
+      setFile(null);
+      setImage(null);
+      
       navigate('/dashboard');
     } catch (error) {
-      toast.error(error.res);
-      
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        toast.error(error.response.data.message || "Something went wrong");
+      } else {
+        // Something else caused an error
+        toast.error("An unexpected error occurred");
+      }
+      console.log(error);
     }
   };
+  
 
   return (
     <div className='h-screen'>

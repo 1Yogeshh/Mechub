@@ -17,6 +17,9 @@ const Start=()=> {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
+
+
    
     useEffect(() => {
       const fetchProfile = async () => {
@@ -58,6 +61,17 @@ const Start=()=> {
     useEffect(()=>{
         changeScreen();
     },[])*/
+
+    const handleLogout = () => {
+      // Remove the token from localStorage
+      localStorage.removeItem('token');
+      
+      // Optionally, clear any other user-related data (if any)
+      // localStorage.removeItem('user');
+  
+      // Redirect to the login page or home page
+      navigate('/login'); // Adjust the route as needed
+    };
   
   return (
     <div className="flex flex-col min-h-[100dvh] bg-zinc-100">
@@ -82,7 +96,7 @@ const Start=()=> {
         {
           localStorage.getItem('token')?(
                 <div className='flex md:gap-6 gap-2'>
-                <button  className='flex justify-center text-sm items-center border-[1px] text-[#5b23d7] border-[#5b23d7]  md:w-[120px] w-[80px] h-[37px] rounded'>Logout</button>
+                <button onClick={handleLogout}  className='flex justify-center text-sm items-center border-[1px] text-[#5b23d7] border-[#5b23d7]  md:w-[120px] w-[80px] h-[37px] rounded'>Logout</button>
                 <button onClick={()=>navigate('/dashboard')} className='flex  justify-center text-sm items-center bg-[#5b23d7] text-white md:w-[150px] w-[100px] h-[37px] rounded md:gap-2'>Get Started <ArrowRight size={16}/></button>
                 </div>   
                              
